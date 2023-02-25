@@ -5,7 +5,13 @@ import * as Location from "expo-location";
 import MapViewDirections from "react-native-maps-directions";
 import { GOOGLE_API_KEY } from "@env";
 
+const viewMessage = {
+  loading: "We are gathering your location data",
+  error: "Permission to access location was denied",
+};
+
 const MapScreen = ({ route, navigation }) => {
+  const [message, setMessage] = React.useState(viewMessage.loading);
   const [location, setLocation] = React.useState(null);
   const [markers, setMarkers] = React.useState([]);
   const [selectedMarker, setSelectedMarker] = React.useState(null);
@@ -15,10 +21,13 @@ const MapScreen = ({ route, navigation }) => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
 
-      if (status === "granted") {
-        let location = await Location.getCurrentPositionAsync({});
-        setLocation(location.coords);
+      if (status !== "granted") {
+        setMessage(viewMessage.error);
+        return;
       }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location.coords);
     })();
   }, []);
 
@@ -36,9 +45,9 @@ const MapScreen = ({ route, navigation }) => {
   };
 
   return (
-    <View>
+    <>
       {location ? (
-        <>
+        <View>
           <MapView
             style={styles.map}
             showsUserLocation
@@ -90,11 +99,13 @@ const MapScreen = ({ route, navigation }) => {
               />
             </Callout>
           )}
-        </>
+        </View>
       ) : (
-        <Text>Permission to access location was denied</Text>
+        <View style={styles.container} behavior="padding">
+          <Text>{message}</Text>
+        </View>
       )}
-    </View>
+    </>
   );
 };
 
@@ -113,5 +124,10 @@ const styles = StyleSheet.create({
     bottom: 10,
     alignSelf: "center",
     justifyContent: "space-between",
+  },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

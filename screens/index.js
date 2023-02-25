@@ -1,5 +1,4 @@
 import LoginScreen from "./LoginScreen";
-import HomeScreen from "./HomeScreen";
 import MapScreen from "./MapScreen";
 import MarkerScreen from "./MarkerScreen";
 
@@ -17,11 +16,6 @@ export default [
     options,
     name: "Map",
     component: MapScreen,
-  },
-  {
-    options,
-    name: "Home",
-    component: HomeScreen,
   },
   {
     options,

@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { KeyboardAvoidingView, StyleSheet, View, Button } from "react-native";
 
 import * as Google from "expo-auth-session/providers/google";
 import { GOOGLE_WEB_CLIENT_ID, GOOGLE_ANDROID_CLIENT_ID } from "@env";
@@ -14,8 +8,8 @@ const LoginScreen = ({ navigation }) => {
   const [accessToken, setAccessToken] = React.useState(null);
   const [user, setUser] = React.useState(null);
 
-  const expoClientId = GOOGLE_WEB_CLIENT_ID;
-  const androidClientId = GOOGLE_ANDROID_CLIENT_ID;
+  const expoClientId = `${GOOGLE_WEB_CLIENT_ID}`;
+  const androidClientId = `${GOOGLE_ANDROID_CLIENT_ID}`;
 
   const [request, response, promtAsync] = Google.useIdTokenAuthRequest({
     androidClientId,
@@ -23,11 +17,10 @@ const LoginScreen = ({ navigation }) => {
   });
 
   React.useEffect(() => {
-    console.log("response", response);
     if (response?.type === "success") {
       // setAccessToken(response.authentication.accessToken); // only in android apk
       // accessToken && fetchUserInfo();
-      navigation.navigate('Map');
+      navigation.navigate("Map");
     }
   }, [response, accessToken]);
 
@@ -42,13 +35,11 @@ const LoginScreen = ({ navigation }) => {
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <View>
-        <TouchableOpacity
+        <Button
           disabled={!request}
+          title="Login"
           onPress={() => promtAsync()}
-          style={styles.button}
-        >
-          <Text>Login</Text>
-        </TouchableOpacity>
+        />
       </View>
     </KeyboardAvoidingView>
   );

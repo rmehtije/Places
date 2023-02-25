@@ -16,8 +16,7 @@ const MarkerScreen = ({ route, navigation }) => {
   const { latitude, longitude } = route.params;
 
   const handleCreatePin = () => {
-    console.log('handleCreatePin', pinTitle, pinDescription);
-    if(!pinTitle || !pinDescription) return;
+    if (!pinTitle || !pinDescription) return;
 
     navigation.navigate("Map", {
       ...route.params,
@@ -29,8 +28,11 @@ const MarkerScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text> Create marker </Text>
-      <View>
+      <Text style={styles.heading}> Create marker </Text>
+
+      <Text> latitude: {latitude} </Text>
+      <Text> longitude: {longitude} </Text>
+      <View style={styles.full}>
         <Picker
           selectedValue={selectedColor}
           onValueChange={(itemValue, itemIndex) => setSelectedColor(itemValue)}
@@ -41,10 +43,7 @@ const MarkerScreen = ({ route, navigation }) => {
         </Picker>
         <TextInput placeholder="Title" onChangeText={setPinTitle} />
         <TextInput placeholder="Description" onChangeText={setPinDescription} />
-        <Button
-          title="Create pin"
-          onPress={handleCreatePin}
-        />
+        <Button title="Create pin" onPress={handleCreatePin} />
       </View>
     </View>
   );
@@ -58,4 +57,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  heading: {
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  full: {
+    width: '80%',
+  }
 });
