@@ -10,6 +10,7 @@ Node -v: 18
 1. add your keys to .env
 1. add google api key to /android/app/src/main/AndroidManifest.xml => meta-data android:name="com.google.android.geo.API_KEY"
 1. app.js - search for 'com.uniq.places' and rename to something uniq like: 'com.ANY.places'
+1. app.js - change projectId with your expo id
 1. Install Expo Go on your android phone
 1. run npx expo start
 
