@@ -1,0 +1,35 @@
+{
+  "name": "places",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "expo start --dev-client",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@react-native-picker/picker": "^2.4.8",
+    "@react-navigation/native": "^6.1.4",
+    "@react-navigation/native-stack": "^6.9.10",
+    "expo": "~47.0.12",
+    "expo-auth-session": "~3.8.0",
+    "expo-location": "~15.0.1",
+    "expo-random": "~13.0.0",
+    "expo-splash-screen": "~0.17.5",
+    "expo-status-bar": "~1.4.2",
+    "expo-updates": "~0.15.6",
+    "expo-web-browser": "~12.0.0",
+    "react": "18.1.0",
+    "react-native": "0.70.5",
+    "react-native-dotenv": "^3.4.7",
+    "react-native-gradle-plugin": "^0.71.15",
+    "react-native-maps": "^1.4.0",
+    "react-native-maps-directions": "^1.9.0",
+    "react-native-safe-area-context": "4.4.1",
+    "react-native-screens": "~3.18.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9"
+  },
+  "private": true
+}
